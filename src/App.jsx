@@ -201,7 +201,7 @@ export const App = () => {
         <Rig rotation={[0, 0, 0.15]}>
           <Carousel onOpenVideo={setLightbox} />
         </Rig>
-        <Environment preset="studio" background blur={0.5} />
+        <Environment preset="dawn" background blur={0.5} />
       </Canvas>
 
       {lightbox && (
