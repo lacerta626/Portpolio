@@ -1,175 +1,221 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>정인하 — Multi Creator</title>
+  <title>정인하 — Technical Artist</title>
   <meta name="description" content="상상을 현실로, 멀티 크리에이터 정인하의 포트폴리오. 개발, 영상, 브랜딩, 3D, 일러스트레이션." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet" />
-  <script src="js/script.js" defer ></script>
-  <script type="module" crossorigin src="/assets/index-BOgq_mKk.js"></script>
-  <link rel="stylesheet" crossorigin href="/assets/index-Ck7_C66m.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=DM+Mono:wght@300;400&display=swap"
+    rel="stylesheet" />
+  <script type="module" crossorigin src="/assets/index-DmK4SdJ3.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-C6eloMpT.css">
 </head>
+
 <body>
 
-<div class="cursor" id="cursor"></div>
+  <div class="cursor" id="cursor"></div>
 
-<!-- Nav -->
-<nav>
-  <div class="nav-logo">Inha Jeong®</div>
-  <ul class="nav-links">
-    <li><a href="#hero"><span class="nav-num">01/</span>Hey</a></li>
-    <li><a href="#about"><span class="nav-num">02/</span>About</a></li>
-    <li><a href="#work"><span class="nav-num">03/</span>Work</a></li>
-    <li><a href="#contact"><span class="nav-num">04/</span>Contact</a></li>
-  </ul>
-</nav>
+  <!-- Nav -->
+  <nav>
+    <div class="nav-logo">Inha Jeong®</div>
+    <ul class="nav-links">
+      <li><a href="#hero"><span class="nav-num">01/</span>Hello</a></li>
+      <li><a href="#skill"><span class="nav-num">02/</span>Skill</a></li>
+      <li><a href="#work"><span class="nav-num">03/</span>Work</a></li>
+      <li><a href="#contact"><span class="nav-num">04/</span>Contact</a></li>
+    </ul>
+  </nav>
 
-<!-- Hero -->
-<section id="hero">
-  <div id="hero-canvas"></div>
-  <p class="hero-year">©2026</p>
-  <h1 class="hero-title">Imagination<br>to Reality<em>.</em></h1>
+  <!-- Hero -->
+  <section id="hero" class="hero-new">
+    <!-- 상단 대형 타이포그래피 타이틀 -->
+    <div class="hero-title-row">
+      <h1 class="hero-big-title">Technical<br>Artist</h1>
+    </div>
 
-  <div class="scroll-hint"><span class="scroll-line"></span>scroll</div>
-</section>
+    <!-- 하단 콘텐츠: 왼쪽 사진 + 오른쪽 텍스트 -->
+    <div class="hero-bottom">
+      <div class="hero-photo-wrap">
+        <div class="hero-photo-placeholder">
+          <img src="/assets/myphoto-BtcSpcJU.jpg" alt="My Photo" />
+        </div>
+      </div>
 
-<!-- About -->
-<section id="about">
-  <div>
-    <p class="about-label">02 / About</p>
-    <h2 class="about-heading">여러 매체를<br><strong>하나의 시각</strong>으로.</h2>
-    <p class="about-text">개발, 영상, 브랜딩 — 장르의 경계 없이 아이디어를 구체화합니다.<br>멀티 크리에이터 정인하입니다.</p>
-    <p class="about-text">웹 개발부터 영상 제작, 브랜딩, 3D 모델링, 일러스트레이션까지 — 다양한 도구를 다루지만 결국 하나의 질문으로 수렴합니다. <em>"어떻게 하면 더 잘 전달될까?"</em></p>
-    <p class="about-text">아이디어가 가장 효과적으로 살아있는 형태를 찾아 매체를 가리지 않고 작업합니다.</p>
-    <div class="about-stats">
-      <div class="stat"><span class="stat-num">7+</span><span class="stat-label">projects</span></div>
-      <div class="stat"><span class="stat-num">5+</span><span class="stat-label">tools mastered</span></div>
-      <div class="stat"><span class="stat-num">3</span><span class="stat-label">fields</span></div>
-      <div class="stat"><span class="stat-num">1×</span><span class="stat-label">award</span></div>
-    </div>
-  </div>
-  <div class="about-right">
-    <div class="skill-group">
-      <p class="skill-group-name">Development</p>
-      <div class="skill-pills">
-        <span class="skill-pill">HTML/CSS</span>
-        <span class="skill-pill">JavaScript</span>
-        <span class="skill-pill">Figma</span>
+      <div class="hero-info">
+        <p class="hero-iam">I am a</p>
+        <div class="typing-container">
+          <span id="typing-text"></span><span class="cursor-blink">_</span>
+        </div>
+        <p class="hero-desc">
+          게임과 웹을 넘나드는 테크니컬 아티스트.<br>
+          Unity, Blender, Three.js로 상상을 현실로 만듭니다.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">Game Dev</span>
+          <span class="hero-tag">3D Artist</span>
+          <span class="hero-tag">Web Dev</span>
+          <span class="hero-tag">UI Design</span>
+        </div>
       </div>
     </div>
-    <div class="skill-group">
-      <p class="skill-group-name">Visual</p>
-      <div class="skill-pills">
-        <span class="skill-pill">Photoshop</span>
-        <span class="skill-pill">Illustrator</span>
-        <span class="skill-pill">Clip Studio</span>
-        <span class="skill-pill">Aseprite</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-name">Motion & 3D</p>
-      <div class="skill-pills">
-        <span class="skill-pill">After Effects</span>
-        <span class="skill-pill">Premiere Pro</span>
-        <span class="skill-pill">Blender</span>
-      </div>
-    </div>
-    <div class="skill-group">
-      <p class="skill-group-name">Branding</p>
-      <div class="skill-pills">
-        <span class="skill-pill">Brand Identity</span>
-        <span class="skill-pill">Logo Design</span>
-        <span class="skill-pill">Concept Page</span>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Work -->
-<section id="work">
-  <div class="work-header">
-    <h2 class="work-title">Selected Work</h2>
-    <span class="work-count">07 projects</span>
-  </div>
-  <div id="projectList">
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">01</span>
-      <div>
-        <div class="project-name">파충류 엑스포 <em>홈페이지</em></div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">파충류 관련 엑스포를 위한 홈페이지를 HTML/CSS 기반으로 직접 제작했습니다. 파충류 특유의 질감과 세계관을 시각적으로 표현하는 데 집중했습니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">Web</span><div class="proj-tags"><span class="tag">HTML</span><span class="tag">CSS</span></div></div>
-    </div>
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">02</span>
-      <div>
-        <div class="project-name">피자헛 <em>리뉴얼</em></div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">기존 피자헛 홈페이지를 리디자인한 리뉴얼 프로젝트. 사용자 경험을 중심으로 구조를 재설계하고 브랜드 아이덴티티를 현대적으로 재해석했습니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">Web</span><div class="proj-tags"><span class="tag">HTML</span><span class="tag">Redesign</span></div></div>
-    </div>
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">03</span>
-      <div>
-        <div class="project-name">브랜딩 <em>— 렙타</em></div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">개인 브랜드 '렙타'의 로고와 아이덴티티 시스템을 설계했습니다. Photoshop과 Illustrator를 활용해 로고부터 컨셉 페이지까지 하나의 세계관으로 완성했습니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">Branding</span><div class="proj-tags"><span class="tag">Logo</span><span class="tag">Identity</span><span class="tag">Ps/Ai</span></div></div>
-    </div>
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">04</span>
-      <div>
-        <div class="project-name"><em>스터디펫</em> App</div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">모바일 스터디 어플리케이션의 UI/UX를 Figma, Photoshop, Illustrator로 설계했습니다. 사용자 플로우 분석부터 화면 설계, 비주얼 디자인까지 전 과정을 담당했습니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">UI/UX</span><div class="proj-tags"><span class="tag">Figma</span><span class="tag">Mobile</span><span class="tag">App</span></div></div>
-    </div>
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">05</span>
-      <div>
-        <div class="project-name">이노베이션 <em>시드</em></div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">공모전 출품작으로 클레이아트 스타일의 영상을 제작했습니다. After Effects와 Premiere Pro를 활용해 독특한 질감과 내러티브를 가진 단편 영상을 완성했습니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">Motion</span><div class="proj-tags"><span class="tag">AE</span><span class="tag">Premiere</span><span class="tag">공모전</span></div></div>
-    </div>
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">06</span>
-      <div>
-        <div class="project-name">3D <em>모델링</em></div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">Blender로 인테리어 공간, 인게임 에셋, 배경 오브젝트 등 다양한 주제의 3D 모델을 제작했습니다. 게임 개발과 연계된 에셋 작업도 진행 중입니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">3D</span><div class="proj-tags"><span class="tag">Blender</span><span class="tag">Game Asset</span></div></div>
-    </div>
-    <div class="project-item" onclick="toggleProject(this)">
-      <span class="proj-num">07</span>
-      <div>
-        <div class="project-name"><em>드로잉</em> & 도트 아트</div>
-        <div class="proj-preview"><div class="proj-preview-inner"><p class="proj-desc">Clip Studio, Aseprite, Photoshop을 활용한 개인 일러스트 작업입니다. 도트 그래픽 아트를 중심으로 다양한 스타일의 캐릭터와 배경을 꾸준히 작업하고 있습니다.</p></div></div>
-      </div>
-      <div class="proj-meta"><span class="proj-type">Illustration</span><div class="proj-tags"><span class="tag">Pixel Art</span><span class="tag">Clip Studio</span></div></div>
-    </div>
-  </div>
-</section>
+    <div class="scroll-hint"><span class="scroll-line"></span>scroll</div>
+  </section>
 
-<!-- Contact -->
-<section id="contact">
-  <p class="contact-label">04 / Contact</p>
-  <h2 class="contact-heading">같이<br><em>만들어요.</em></h2>
-  <a href="mailto:lacerta626@gmail.com" class="contact-email">lacerta626@gmail.com</a>
-  <ul class="socials">
-    <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
-  </ul>
-</section>
+  <!-- Skill -->
+  <section id="skill" class="skill-new">
+    <div class="skill-top-row">
+      <div class="skill-header">
+        <p class="section-label">02 / SKILLS</p>
+        <h2 class="skill-section-title">What I Can Do</h2>
+      </div>
+      <!-- 호버 시 설명 표시 패널 -->
+      <div class="skill-desc-panel" id="skill-desc-panel">
+        <h3 id="skill-desc-name">HOVER A SKILL</h3>
+        <p id="skill-desc-text">각 스킬 카드에 마우스를 올려 상세 설명을 확인하세요.</p>
+      </div>
+    </div>
+    <div class="skill-categories">
 
-<!-- Footer -->
-<footer>
-  <span class="footer-text">©2025 정인하® — Seoul, KR</span>
-  <span class="footer-text">Multi Creator</span>
-</footer>
+      <!-- Game & 3D Engine -->
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <span class="skill-cat-num">01</span>
+          <div>
+            <h3 class="skill-cat-title">Game / 3D Engine</h3>
+            <p class="skill-cat-tools">Unity, C# &nbsp;/&nbsp; Blender</p>
+          </div>
+        </div>
+        <div class="skill-cat-items">
+          <div class="skill-item-card" data-name="Unity / C#"
+            data-desc="Unity 엔진 내 UI/UX 시스템 구축, 2D/3D 스테이지 매니지먼트 및 스크립팅 가능">
+            <span class="skill-item-name">Unity / C#</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+          <div class="skill-item-card" data-name="Blender" data-desc="게임 최적화(로우폴리곤, 텍스처 베이킹)를 고려한 3D 배경 및 오브젝트 모델링">
+            <span class="skill-item-name">Blender</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Web & Programming -->
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <span class="skill-cat-num">02</span>
+          <div>
+            <h3 class="skill-cat-title">Web / Programming</h3>
+            <p class="skill-cat-tools">Three.js, R3F, React, JavaScript, HTML/CSS</p>
+          </div>
+        </div>
+        <div class="skill-cat-items">
+          <div class="skill-item-card" data-name="Three.js / R3F" data-desc="웹 기반 3D 인터랙션 및 포트폴리오용 웹 대시보드 구현 역량 보유">
+            <span class="skill-item-name">Three.js / R3F</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+          <div class="skill-item-card" data-name="React / JavaScript" data-desc="웹 기반 3D 인터랙션 및 포트폴리오용 웹 대시보드 구현 역량 보유">
+            <span class="skill-item-name">React / JavaScript</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+          <div class="skill-item-card" data-name="HTML / CSS" data-desc="웹 기반 3D 인터랙션 및 포트폴리오용 웹 대시보드 구현 역량 보유">
+            <span class="skill-item-name">HTML / CSS</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- UI & Visual Artwork -->
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <span class="skill-cat-num">03</span>
+          <div>
+            <h3 class="skill-cat-title">UI / Visual Artwork</h3>
+            <p class="skill-cat-tools">Photoshop, Illustrator, After Effects, Premiere Pro</p>
+          </div>
+        </div>
+        <div class="skill-cat-items">
+          <div class="skill-item-card" data-name="Photoshop / Illustrator"
+            data-desc="게임 UI 인터페이스 디자인 및 이펙트/모션 그래픽 소스 제작">
+            <span class="skill-item-name">Photoshop / Illustrator</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+          <div class="skill-item-card" data-name="After Effects / Premiere"
+            data-desc="게임 UI 인터페이스 디자인 및 이펙트/모션 그래픽 소스 제작">
+            <span class="skill-item-name">After Effects / Premiere</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Environment -->
+      <div class="skill-category">
+        <div class="skill-cat-header">
+          <span class="skill-cat-num">04</span>
+          <div>
+            <h3 class="skill-cat-title">Environment</h3>
+            <p class="skill-cat-tools">Git / GitHub, VS Code, Notion, Obsidian</p>
+          </div>
+        </div>
+        <div class="skill-cat-items">
+          <div class="skill-item-card" data-name="Git / GitHub" data-desc="버전 관리 및 협업 워크플로우 운영">
+            <span class="skill-item-name">Git / GitHub</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+          <div class="skill-item-card" data-name="VS Code / Notion / Obsidian" data-desc="개발 환경 및 지식 관리 툴 활용">
+            <span class="skill-item-name">VS Code / Notion / Obsidian</span>
+            <span class="skill-item-arrow">→</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+  </section>
+
+  <!-- Work -->
+  <section id="work" class="work-new">
+    <div class="work-header">
+      <h2 class="work-title">Selected Work</h2>
+      <span class="work-count">Click cards to view details</span>
+    </div>
+    <!-- 3D Canvas moved here -->
+    <div class="canvas-wrapper">
+      <div id="hero-canvas"></div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact" class="contact-new">
+    <div class="contact-wrapper">
+      <!-- 대형 타이틀 -->
+      <h2 class="contact-headline">Want to<br><em>reach out?</em></h2>
+
+      <!-- 이메일 행 -->
+      <div class="contact-email-row">
+        <a href="mailto:lacerta626@gmail.com" class="contact-email">lacerta626@gmail.com</a>
+      </div>
+
+      <!-- SNS 링크 바 -->
+      <div class="contact-socials-bar">
+        <a href="https://github.com/lacerta626" target="_blank">GitHub</a>
+        <a href="#" target="_blank">Notepolio</a>
+        <a href="#" target="_blank">YouTube</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer
+  <footer>
+    <span class="footer-text">©2026 정인하® — Seoul, KR</span>
+    <span class="footer-text">Multi Creator</span>
+  </footer> -->
 
 
 </body>
+
 </html>
