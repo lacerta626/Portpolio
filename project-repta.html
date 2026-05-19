@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Repta — 정인하 포트폴리오</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Space+Grotesk:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #cbc8be;
+      --fg: #1a1a1a;
+      --muted: rgba(26,26,26,0.45);
+      --border: rgba(26,26,26,0.12);
+      --pad-x: 2.5rem;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--fg);
+      font-family: 'Space Grotesk', -apple-system, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.4rem var(--pad-x);
+      mix-blend-mode: multiply;
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      text-decoration: none;
+      color: var(--fg);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fg);
+      opacity: 0.6;
+      transition: opacity 0.2s;
+    }
+
+    .nav-links a:hover { opacity: 1; }
+
+    /* ── BACK BUTTON ── */
+    .btn-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.55rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--fg);
+      border: 1px solid var(--border);
+      padding: 0.5rem 1.1rem 0.5rem 0.8rem;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+      cursor: pointer;
+      background: transparent;
+      font-family: inherit;
+    }
+
+    .btn-back:hover {
+      background: var(--fg);
+      color: var(--bg);
+      border-color: var(--fg);
+    }
+
+    .btn-back svg {
+      width: 14px;
+      height: 14px;
+      flex-shrink: 0;
+      transition: transform 0.2s;
+    }
+
+    .btn-back:hover svg {
+      transform: translateX(-3px);
+    }
+
+    .project-hero {
+      padding: 8rem var(--pad-x) 4rem;
+    }
+
+    .project-meta-top {
+      display: flex;
+      align-items: baseline;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .project-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 8vw, 7rem);
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      line-height: 0.95;
+    }
+
+    .project-subtitle {
+      font-size: 0.8rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      padding-top: 0.5rem;
+    }
+
+    .project-tags {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-top: 1.5rem;
+    }
+
+    .project-tag {
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid var(--border);
+      padding: 0.35rem 0.9rem;
+      color: var(--muted);
+    }
+
+    .project-cover {
+      width: 100%;
+      aspect-ratio: 16/8;
+      overflow: hidden;
+    }
+
+    .project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .project-overview {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr 1.5fr;
+      gap: 3rem;
+      padding: 5rem var(--pad-x);
+      border-top: 1px solid var(--border);
+    }
+
+    .overview-label {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .overview-text {
+      font-size: 0.88rem;
+      line-height: 1.75;
+      color: var(--fg);
+      opacity: 0.8;
+    }
+
+    .project-gallery {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+    }
+
+    .gallery-img-full {
+      width: 100%;
+      display: block;
+      overflow: hidden;
+    }
+
+    .gallery-img-full img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-img-full img:hover { transform: scale(1.01); }
+
+    .gallery-img-half {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    .gallery-img-half img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-img-half img:hover { transform: scale(1.01); }
+
+    .gallery-img-thirds {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 0;
+    }
+
+    .gallery-img-thirds img {
+      width: 100%;
+      display: block;
+      transition: transform 0.6s ease;
+    }
+
+    .gallery-img-thirds img:hover { transform: scale(1.01); }
+
+    .project-meta-bottom {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      padding: 4rem var(--pad-x);
+      border-top: 1px solid var(--border);
+    }
+
+    .meta-item-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .meta-item-value {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+    }
+
+    .next-project {
+      display: block;
+      text-decoration: none;
+      color: var(--fg);
+      border-top: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .next-project-label {
+      padding: 3rem var(--pad-x) 1.5rem;
+    }
+
+    .next-label-small {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.5rem;
+    }
+
+    .next-label-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 4rem);
+      font-weight: 700;
+      font-style: italic;
+      letter-spacing: -0.02em;
+    }
+
+    .next-project-cover {
+      width: 100%;
+      aspect-ratio: 16/6;
+      overflow: hidden;
+    }
+
+    .next-project-cover img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform 0.8s ease;
+    }
+
+    .next-project:hover .next-project-cover img { transform: scale(1.03); }
+
+    footer {
+      padding: 1.5rem var(--pad-x);
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+
+    @media (max-width: 900px) {
+      .project-overview { grid-template-columns: 1fr; gap: 2rem; }
+      .project-meta-bottom { grid-template-columns: 1fr 1fr; }
+      .gallery-img-half, .gallery-img-thirds { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      :root { --pad-x: 1.2rem; }
+      .nav-links { display: none; }
+      .project-meta-bottom { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="index.html" class="nav-logo">Inha Jeong®</a>
+    <ul class="nav-links">
+      <li><a href="index.html#hero">01/Hey</a></li>
+      <li><a href="index.html#skill">02/Skill</a></li>
+      <li><a href="index.html#work">03/Work</a></li>
+      <li><a href="index.html#contact">04/Contact</a></li>
+      <li>
+        <button class="btn-back" onclick="history.length > 1 ? history.back() : window.location.href='index.html#work'">
+          <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M10 3L5 8l5 5"/>
+          </svg>
+          Close
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="project-hero">
+    <div class="project-meta-top">
+      <h1 class="project-title">Repta</h1>
+    </div>
+    <p class="project-subtitle">Branding / Visual Identity</p>
+    <div class="project-tags">
+      <span class="project-tag">Branding</span>
+      <span class="project-tag">Visual Identity</span>
+      <span class="project-tag">Logo Design</span>
+      <span class="project-tag">Print</span>
+    </div>
+  </section>
+
+  <!-- COVER IMAGE -->
+  <div class="project-cover">
+    <img src="public/projects/repta1.png" alt="Repta Cover" />
+  </div>
+
+  <!-- OVERVIEW -->
+  <section class="project-overview">
+    <div class="overview-label">Project<br>Overview</div>
+    <p class="overview-text">
+      Repta는 파충류 전문 브랜드를 위한 비주얼 아이덴티티 프로젝트입니다.
+      파충류의 독특한 질감과 자연적인 패턴에서 영감을 받아
+      강렬하면서도 세련된 브랜드 이미지를 구축했습니다.
+    </p>
+    <p class="overview-text">
+      로고 디자인부터 브랜드 컬러 시스템, 패키지 디자인, 인쇄물까지
+      일관된 브랜드 언어를 통해 전문적이고 신뢰감 있는 아이덴티티를 완성했습니다.
+    </p>
+  </section>
+
+  <!-- IMAGE GALLERY -->
+  <div class="project-gallery">
+    <div class="gallery-img-full">
+      <img src="public/projects/repta2.png" alt="Repta 02" />
+    </div>
+    <div class="gallery-img-half">
+      <img src="public/projects/repta3.png" alt="Repta 03" />
+      <img src="public/projects/repta4.png" alt="Repta 04" />
+    </div>
+    <div class="gallery-img-full">
+      <img src="public/projects/repta5.png" alt="Repta 05" />
+    </div>
+    <div class="gallery-img-half">
+      <img src="public/projects/repta6.png" alt="Repta 06" />
+      <img src="public/projects/repta7.png" alt="Repta 07" />
+    </div>
+  </div>
+
+  <!-- META BOTTOM -->
+  <div class="project-meta-bottom">
+    <div>
+      <p class="meta-item-label">Year</p>
+      <p class="meta-item-value">2024</p>
+    </div>
+    <div>
+      <p class="meta-item-label">Category</p>
+      <p class="meta-item-value">Branding</p>
+    </div>
+    <div>
+      <p class="meta-item-label">Role</p>
+      <p class="meta-item-value">Brand Design</p>
+    </div>
+  </div>
+
+  <!-- NEXT PROJECT -->
+  <a href="project-studypet.html" class="next-project">
+    <div class="next-project-label">
+      <p class="next-label-small">Next Project</p>
+      <p class="next-label-title">Study Pet</p>
+    </div>
+    <div class="next-project-cover">
+      <img src="public/projects/studypet.png" alt="Study Pet" />
+    </div>
+  </a>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>©2025 정인하® — Seoul, KR</span>
+    <span>Multi Creator</span>
+  </footer>
+
+</body>
+</html>

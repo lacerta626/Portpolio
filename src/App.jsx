@@ -1,9 +1,9 @@
 import * as THREE from 'three'
 import { useRef, useState, useEffect, Suspense } from 'react'
+import { createPortal } from 'react-dom'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { Image, Environment, useTexture, useVideoTexture } from '@react-three/drei'
 import { easing } from 'maath'
-import { GalleryOverlay } from './GalleryOverlay'
 import './util'
 
 // ─────────────────────────────────────────
@@ -35,7 +35,7 @@ const PROJECTS = [
   {
     id: 3,
     title: 'Study Pet',
-    type: 'gallery',          // 클릭 시 갤러리 오버레이
+    type: 'gallery',
     galleryKey: 'studypet',
     thumb: '/projects/studypet.png',
     link: '#',
@@ -43,7 +43,7 @@ const PROJECTS = [
   {
     id: 4,
     title: 'Repta',
-    type: 'gallery',          // 클릭 시 갤러리 오버레이
+    type: 'gallery',
     galleryKey: 'repta',
     thumb: '/projects/repta.png',
     link: '#',
@@ -75,26 +75,140 @@ const PROJECTS = [
 ]
 
 // ─────────────────────────────────────────
-//  Canvas 루트 + 갤러리 오버레이 상태 관리
+//  영상 라이트박스 오버레이
+// ─────────────────────────────────────────
+function VideoLightbox({ videoUrl, title, onClose }) {
+  // ESC 키로 닫기
+  useEffect(() => {
+    const handleKey = (e) => { if (e.key === 'Escape') onClose() }
+    window.addEventListener('keydown', handleKey)
+    document.body.style.overflow = 'hidden'
+    return () => {
+      window.removeEventListener('keydown', handleKey)
+      document.body.style.overflow = ''
+    }
+  }, [onClose])
+
+  return createPortal(
+    <div
+      style={{
+        position: 'fixed',
+        inset: 0,
+        zIndex: 9999,
+        background: 'rgba(0,0,0,0.92)',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        animation: 'lbFadeIn 0.25s ease',
+      }}
+      onClick={onClose}
+    >
+      <style>{`
+        @keyframes lbFadeIn {
+          from { opacity: 0; }
+          to   { opacity: 1; }
+        }
+        @keyframes lbScaleIn {
+          from { transform: scale(0.94); opacity: 0; }
+          to   { transform: scale(1);    opacity: 1; }
+        }
+        .lb-inner {
+          position: relative;
+          width: min(90vw, 1100px);
+          animation: lbScaleIn 0.3s cubic-bezier(0.22,1,0.36,1);
+        }
+        .lb-inner video {
+          width: 100%;
+          display: block;
+          border-radius: 4px;
+          box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+        .lb-close {
+          position: absolute;
+          top: -2.8rem;
+          right: 0;
+          background: none;
+          border: 1px solid rgba(255,255,255,0.25);
+          color: #fff;
+          font-size: 0.65rem;
+          letter-spacing: 0.18em;
+          text-transform: uppercase;
+          padding: 0.4rem 1rem;
+          cursor: pointer;
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-family: 'Space Grotesk', sans-serif;
+          transition: background 0.2s, border-color 0.2s;
+        }
+        .lb-close:hover {
+          background: rgba(255,255,255,0.12);
+          border-color: rgba(255,255,255,0.6);
+        }
+        .lb-title {
+          position: absolute;
+          bottom: -2.6rem;
+          left: 0;
+          font-size: 0.68rem;
+          letter-spacing: 0.16em;
+          text-transform: uppercase;
+          color: rgba(255,255,255,0.45);
+          font-family: 'Space Grotesk', sans-serif;
+        }
+      `}</style>
+
+      <div
+        className="lb-inner"
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* 닫기 버튼 */}
+        <button className="lb-close" onClick={onClose}>
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            <line x1="1" y1="1" x2="11" y2="11"/>
+            <line x1="11" y1="1" x2="1" y2="11"/>
+          </svg>
+          Close
+        </button>
+
+        {/* 영상 */}
+        <video
+          src={videoUrl}
+          autoPlay
+          controls
+          playsInline
+          loop
+        />
+
+        {/* 영상 타이틀 */}
+        <p className="lb-title">{title}</p>
+      </div>
+    </div>,
+    document.body
+  )
+}
+
+// ─────────────────────────────────────────
+//  Canvas 루트
 // ─────────────────────────────────────────
 export const App = () => {
-  const [galleryKey, setGalleryKey] = useState(null)
+  const [lightbox, setLightbox] = useState(null) // { videoUrl, title }
 
   return (
     <>
       <Canvas camera={{ position: [0, 0, 100], fov: 15 }}>
         <fog attach="fog" args={['#e5e4de', 8.5, 12]} />
         <Rig rotation={[0, 0, 0.15]}>
-          <Carousel onOpenGallery={setGalleryKey} />
+          <Carousel onOpenVideo={setLightbox} />
         </Rig>
-        <Environment preset="dawn" background blur={0.5} />
+        <Environment preset="studio" background blur={0.5} />
       </Canvas>
 
-      {/* 갤러리 오버레이 — 포털 없이 Canvas 위에 absolute 배치 */}
-      {galleryKey && (
-        <GalleryOverlay
-          projectKey={galleryKey}
-          onClose={() => setGalleryKey(null)}
+      {lightbox && (
+        <VideoLightbox
+          videoUrl={lightbox.videoUrl}
+          title={lightbox.title}
+          onClose={() => setLightbox(null)}
         />
       )}
     </>
@@ -139,13 +253,13 @@ function Rig(props) {
 // ─────────────────────────────────────────
 //  카드 배치
 // ─────────────────────────────────────────
-function Carousel({ radius = 1.4, onOpenGallery }) {
+function Carousel({ radius = 1.4, onOpenVideo }) {
   const count = PROJECTS.length
   return PROJECTS.map((project, i) => (
     <Card
       key={project.id}
       project={project}
-      onOpenGallery={onOpenGallery}
+      onOpenVideo={onOpenVideo}
       position={[
         Math.sin((i / count) * Math.PI * 2) * radius,
         0,
@@ -157,7 +271,7 @@ function Carousel({ radius = 1.4, onOpenGallery }) {
 }
 
 // ─────────────────────────────────────────
-//  이미지 카드 (youtube / site / gallery)
+//  이미지 카드
 // ─────────────────────────────────────────
 function ImageCard({ url, hovered, ...props }) {
   const ref = useRef()
@@ -177,7 +291,7 @@ function ImageCard({ url, hovered, ...props }) {
 }
 
 // ─────────────────────────────────────────
-//  영상 카드 — 호버 시 mp4 재생
+//  영상 카드 — 호버 시 mp4 미리보기 재생
 // ─────────────────────────────────────────
 function VideoCard({ videoUrl, thumbUrl, hovered, ...props }) {
   const ref = useRef()
@@ -211,13 +325,21 @@ function VideoCard({ videoUrl, thumbUrl, hovered, ...props }) {
 // ─────────────────────────────────────────
 //  카드 디스패처
 // ─────────────────────────────────────────
-function Card({ project, onOpenGallery, ...props }) {
+const GALLERY_PAGES = {
+  studypet: 'project-studypet.html',
+  repta: 'project-repta.html',
+}
+
+function Card({ project, onOpenVideo, ...props }) {
   const [hovered, setHovered] = useState(false)
 
   const handleClick = (e) => {
     e.stopPropagation()
-    if (project.type === 'gallery') {
-      onOpenGallery(project.galleryKey)
+    if (project.type === 'video') {
+      // 영상 라이트박스 열기
+      onOpenVideo({ videoUrl: project.video, title: project.title })
+    } else if (project.type === 'gallery' && project.galleryKey) {
+      window.location.href = GALLERY_PAGES[project.galleryKey]
     } else if (project.link && project.link !== '#') {
       window.open(project.link, '_blank')
     }
@@ -247,7 +369,6 @@ function Card({ project, onOpenGallery, ...props }) {
     )
   }
 
-  // youtube / site / gallery — 썸네일 이미지
   return (
     <ImageCard url={project.thumb} hovered={hovered} {...events} {...props} />
   )
